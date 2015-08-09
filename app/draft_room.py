@@ -1,16 +1,31 @@
-from flask import render_template, request, post, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, session
+from flask.ext.login import LoginManager
 from forms import DraftPlayerForm
 from config import app, db
 from models import Player, RosterSpot, DraftPick
 
-
 @app.route("/", methods=["GET", "POST"])
 def draft():
-  print('draft')
-  draft_form = DraftPlayerForm(request.form)
+  print('drafting')
+  draft_player_form = DraftPlayerForm(request.form)
+  error = None
   if request.method == "POST":
     print('drafter')
-    if signup_form.validate_on_submit():
+    if draft_player_form.validate_on_submit():
       print("player selected")
+      player = Player.query.filter_by(draft_player_form.name.data).first()
+      player.available == False
+      
+      db.session.commit()
 
-      player = Player.name
+      return(redirect(url_for('/')))
+
+    else:
+      print(error)
+
+  else:
+    return render_template("draft_player.html", draft_player_form=draft_player_form, error=error)
+
+
+if __name__ == '__main__':
+  app.run(debug=True)
