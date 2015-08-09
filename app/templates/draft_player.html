@@ -1,0 +1,31 @@
+{% extends "bootstrap/base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% include "draft_room_base.html" %}
+
+{% block content %}
+
+  {% with messages = get_flashed_messages() %}
+    {% if messages %}
+      <div class=flashes>
+      {% for message in messages %}
+        {{ message }}
+      {% endfor %}
+      </div>
+    {% endif %}
+  {% endwith %}
+  
+
+  {# <div class="container">               
+    <h1> Player drafted </h1>
+    {{ wtf.quick_form(draft_player_form) }}
+    <input type="submit" value="Draft Him!">
+  </div> #}
+
+  <form method="POST" action="/signup">
+    {{ draft_player_form.csrf_token }}
+    {{ draft_player_form.name.label }} {{ draft_player_form.name(size=20) }}
+    <input type="submit" value="Draft Him!">
+  </form>
+
+{% endblock %}
