@@ -15,6 +15,7 @@ def draft():
       print("player selected")
       player = Player.query.filter_by(draft_player_form.name.data).first()
       player.available == False
+      pick.
       
       db.session.commit()
 
