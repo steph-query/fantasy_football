@@ -13,19 +13,20 @@ def draft():
     print('drafter')
     if draft_player_form.validate_on_submit():
       print("player selected")
-      player = Player.query.filter_by(draft_player_form.name.data).first()
-      player.available == False
-      pick.
+      player = Player.query.filter_by(name=draft_player_form.name.data).first()
+      player.available = False
       
       db.session.commit()
 
-      return(redirect(url_for('/')))
+      return render_template("draft_player.html", draft_player_form=draft_player_form, error=error)
 
     else:
       print(error)
 
   else:
     return render_template("draft_player.html", draft_player_form=draft_player_form, error=error)
+
+
 
 
 if __name__ == '__main__':

@@ -15,7 +15,7 @@
     {% endif %}
   {% endwith %}
 
-  <form method="POST" action="/draft_player">
+  <form method="POST" action="/">
     {{ draft_player_form.csrf_token }}
     {{ draft_player_form.name.label }} {{ draft_player_form.name(size=20) }}
     <input type="submit" value="Draft Him!">

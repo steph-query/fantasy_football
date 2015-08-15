@@ -24,8 +24,8 @@ class Player(db.Model):
         self.bye_week = bye_week
 
 
-    def __repr__(self):
-        return '<Player {0}, Position {1}'.format(self.name, self.position)
+    # def __repr__(self):
+    #     return '<Player {0}, Position {1}'.format(self.name, self.position)
 
 
 class RosterSpot(db.Model):
@@ -40,8 +40,8 @@ class RosterSpot(db.Model):
         self.team_id = team_id
         self.roster_position = roster_position
 
-    def __repr__(self):
-        return "<Team {0}'s {1} spot filled by player #{2}".format(self.team_id, self.player_id)
+    # def __repr__(self):
+    #     return "<Team {0}'s {1} spot filled by player #{2}".format(self.team_id, self.player_id)
 
 
 class DraftPick(db.Model):
@@ -56,7 +56,7 @@ class DraftPick(db.Model):
         self.team_id = team_id
         self.round_number = round_number
 
-    def __repr__(self):
-        return "<Round #{0}: With overall pick number {1} Team #{2} selects player #{3}".format(self.round_number,
-                                                                                                self.id, self.team_id,
-                                                                                                player_id)
+    # def __repr__(self):
+    #     return "<Round #{0}: With overall pick number {1} Team #{2} selects player #{3}".format(self.round_number,
+    #                                                                                             self.id, self.team_id,
+    #                                                                                             player_id)
