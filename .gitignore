@@ -1,2 +1,7 @@
 .idea/
 app/
+app/__pycache__/
+app/old_db.db
+
+
+.DS_Store

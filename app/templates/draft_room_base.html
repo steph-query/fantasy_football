@@ -1,0 +1,57 @@
+
+<html>
+  <head>
+    <title>{% block title %} Draft Room {% endblock title %}</title>
+  </head>
+
+  <body>
+
+     
+
+    <h1> Welcome to the draft room. We are going to optimize the heck out of your draft. </h1>
+
+    {% block content %}
+
+    {% endblock %}
+
+    {% block navbar %}
+      
+    {% endblock navbar %}
+
+
+  <table> 
+    <caption> Undrafted Players </caption>
+    <th>
+      <tr>
+        <td> Name </td>
+        <td> Position </td>
+        <td> Team </td>
+        <td> Bye </td>
+        <td> Projected Points </td>
+      </tr>
+    </th>
+
+    <tbody>
+      {% for player in players[:30] %}
+      <tr>
+        <td> {{ player.name }} </td>
+        <td> {{player.position }} </td>
+        <td> {{player.team }} </td>
+        <td> {{player.bye_week }} </td>
+        <td> {{ player.points }} </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+
+  <table> {% for pos, name in roster %}
+    <tr>
+      <td> {{ pos }} </td>
+      <td> {{ name }} </td>
+    </tr>
+    {% endfor %}
+  </table>
+
+  </body>
+</html>
