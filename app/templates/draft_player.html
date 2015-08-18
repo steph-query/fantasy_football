@@ -1,7 +1,5 @@
-{% extends "bootstrap/base.html" %}
-{% import "bootstrap/wtf.html" as wtf %}
 
-{% include "draft_room_base.html" %}
+{% extends "draft_room_base.html" %}
 
 {% block content %}
 
@@ -20,5 +18,7 @@
     {{ draft_player_form.name.label }} {{ draft_player_form.name(size=20) }}
     <input type="submit" value="Draft Him!">
   </form>
+
+
 
 {% endblock %}
