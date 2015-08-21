@@ -28,7 +28,7 @@ def draft():
       if len(open_spots) >= 1:
         open_spots[0].player_id = player.id
       else:
-        bench = roster_spots.filter(RosterSpot.roster_position.like('%B%').filter(RosterSpot.player_id == '')
+        bench = roster_spots.filter(RosterSpot.roster_position.like('%B%').filter(RosterSpot.player_id == ''))
         if len(bench.all()) >= 1:
           bench[0].player_id = player.id
         else:
