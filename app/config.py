@@ -2,11 +2,12 @@ from os.path import dirname, abspath, join
 
 from flask import Flask
 
-from flask.ext.sqlalchemy import SQLAlchemy
+from flask.ext.sqlalchemy import SQLAlchemy, select
 from flask_bootstrap import Bootstrap
 
 app = Flask(__name__)
 db = SQLAlchemy(app)
+# api = Api(app)
 
 #config section
 SECRET_KEY = 'sshh it"s a secret'

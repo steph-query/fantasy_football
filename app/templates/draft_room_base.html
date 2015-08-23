@@ -8,17 +8,24 @@
   <body>
 
      
+  <h1> Welcome to the draft room. We are going to optimize the fuck out of your draft. </h1>
+  
+  <section>
+    <h2> Draft Status </h2>
+      <div> 
+        <h3> On the Clock</h3>
+        <ul>
+          
+          <li> Team: {{ pick.team_id }} </li> 
+          <li> Owner: {{ pick.team.owner_name }} </li>
+          <li> Round: {{ pick.round_number }} </li> 
+          <li> Pick: {{ pick.id % pick.round_number + 1}} </li>
+        </ul>
+      </div>
+      <div>
+        <h3> Draft Order </h3>
 
-    <h1> Welcome to the draft room. We are going to optimize the crap out of your draft. </h1>
- 
-  <div> 
-    <ul>
-      <li> Team: {{ pick.team_id }} </li> 
-      <li> Round: {{ pick.round_number }} </li> 
-      <li> Pick: {{ pick.id % pick.round_number + 1}} </li>
-    </ul>
-  </div>
-
+  </section>
   {% block content %}
 
   {% endblock %} 
@@ -29,47 +36,228 @@
     {% endblock navbar %}
 
 
+  <section>
+    <table class="players"> 
+      <caption><h2> Top 30 Undrafted Players </h2></caption>
+      <th>
+        <tr>
+          <td> Name </td>
+          <td> Position </td>
+          <td> Team </td>
+          <td> Bye </td>
+          <td> Projected Points </td>
+        </tr>
+      </th>
+      <tbody>
+        {% for player in players[:30] %}
+        <tr class="players_row">
+          <td> {{ player.name }} </td>
+          <td> {{ player.position }} </td>
+          <td> {{ player.team }} </td>
+          <td> {{ player.bye_week }} </td>
+          <td> {{ player.points }} </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </section>
 
-  <table class="players"> 
-    <caption> Top 30 Undrafted Players </caption>
-    <th>
-      <tr>
-        <td> Name </td>
-        <td> Position </td>
-        <td> Team </td>
-        <td> Bye </td>
-        <td> Projected Points </td>
-      </tr>
-    </th>
-
-    <tbody>
-      {% for player in players[:30] %}
-      <tr>
-        <td> {{ player.name }} </td>
-        <td> {{ player.position }} </td>
-        <td> {{ player.team }} </td>
-        <td> {{ player.bye_week }} </td>
-        <td> {{ player.points }} </td>
-      </tr>
-      {% endfor %}
-    </tbody>
-  </table>
-
-  <table class="teams"> 
-    <caption> Team 0 </caption>
-    <th>
-      <tr> 
-        <td> Position </td>
-        <td> Player </td>
-      </tr>
-    </th>
-    {% for pos, name in teams %}
-      <tr>
-        <td> {{ pos }} </td>
-        <td> {{ name }} </td>
-      </tr>
+<section id="dick_flames">
+  <div id="dick_flames" class="roster">
+    <table>
+      <caption><h3> Dick Flames </h3></caption>
+      <th>
+        <tr> 
+          <td> Position </td>
+          <td> Player </td>
+        </tr>
+      </th>    
+    {% for pos, name in teams[5] %}
+        <tr>
+          <td> {{ pos }} </td>
+          <td> {{ name }} </td>
+        </tr>
     {% endfor %}
-  </table>
+    </table>
+  </div>
+  <div class="bye_weeks">
+      <h4> Bye Weeks Count </h4>
+      <ol start="4">
+        {% for week in range(4,12): %}
+        <li> {{ bye_counter[week] }} </li>
+        {% endfor %}
+      </ol>
+  </div>
+
+</section>
+
+<section id="rosters"><h2>Current Rosters</h2>
+  <div class="roster" id="team1_table"> 
+    <table>
+      <caption> Team 1 </caption>
+      <th>
+        <tr> 
+          <td> Position </td>
+          <td> Player </td>
+        </tr>
+      </th>    
+    {% for pos, name in teams[1] %}
+        <tr>
+          <td> {{ pos }} </td>
+          <td> {{ name }} </td>
+        </tr>
+    {% endfor %}
+    </table>
+  </div>
+
+
+  <div class="roster" id="team2_table"> 
+    <table>
+      <caption> Team 2 </caption>
+      <th>
+        <tr> 
+          <td> Position </td>
+          <td> Player </td>
+        </tr>
+      </th>    
+    {% for pos, name in teams[2] %}
+        <tr>
+          <td> {{ pos }} </td>
+          <td> {{ name }} </td>
+        </tr>
+    {% endfor %}
+    </table>
+  </div>
+
+  <div class="roster" id="team3_table"> 
+    <table>
+      <caption> Team 3 </caption>
+      <th>
+        <tr> 
+          <td> Position </td>
+          <td> Player </td>
+        </tr>
+      </th>    
+    {% for pos, name in teams[3] %}
+        <tr>
+          <td> {{ pos }} </td>
+          <td> {{ name }} </td>
+        </tr>
+    {% endfor %}
+    </table>
+  </div>
+
+
+  <div class="roster" id="team4_table"> 
+    <table>
+      <caption> Team 4 </caption>
+      <th>
+        <tr> 
+          <td> Position </td>
+          <td> Player </td>
+        </tr>
+      </th>    
+    {% for pos, name in teams[4] %}
+        <tr>
+          <td> {{ pos }} </td>
+          <td> {{ name }} </td>
+        </tr>
+    {% endfor %}
+    </table>
+  </div>
+
+
+  <div class="roster" id="team6_table"> 
+    <table>
+      <caption> Team 6 </caption>
+      <th>
+        <tr> 
+          <td> Position </td>
+          <td> Player </td>
+        </tr>
+      </th>    
+    {% for pos, name in teams[6] %}
+        <tr>
+          <td> {{ pos }} </td>
+          <td> {{ name }} </td>
+        </tr>
+    {% endfor %}
+    </table>
+  </div>
+
+  <div class="roster" id="team7_table"> 
+    <table>
+      <caption> Team 7 </caption>
+      <th>
+        <tr> 
+          <td> Position </td>
+          <td> Player </td>
+        </tr>
+      </th>    
+    {% for pos, name in teams[7] %}
+        <tr>
+          <td> {{ pos }} </td>
+          <td> {{ name }} </td>
+        </tr>
+    {% endfor %}
+    </table>
+  </div>
+
+  <div class="roster" id="team8_table"> 
+    <table>
+      <caption> Team 8 </caption>
+      <th>
+        <tr> 
+          <td> Position </td>
+          <td> Player </td>
+        </tr>
+      </th>    
+    {% for pos, name in teams[8] %}
+        <tr>
+          <td> {{ pos }} </td>
+          <td> {{ name }} </td>
+        </tr>
+    {% endfor %}
+    </table>
+  </div>
+
+  <div class="roster" id="team9_table"> 
+    <table>
+      <caption> Team 9 </caption>
+      <th>
+        <tr> 
+          <td> Position </td>
+          <td> Player </td>
+        </tr>
+      </th>    
+    {% for pos, name in teams[9] %}
+        <tr>
+          <td> {{ pos }} </td>
+          <td> {{ name }} </td>
+        </tr>
+    {% endfor %}
+    </table>
+  </div>
+
+  <div class="roster" id="team10_table"> 
+    <table>
+      <caption> Team 10 </caption>
+      <th>
+        <tr> 
+          <td> Position </td>
+          <td> Player </td>
+        </tr>
+      </th>    
+    {% for pos, name in teams[10] %}
+        <tr>
+          <td> {{ pos }} </td>
+          <td> {{ name }} </td>
+        </tr>
+    {% endfor %}
+    </table>
+  </div>
+  
+  </section>
 
   </body>
 </html>
