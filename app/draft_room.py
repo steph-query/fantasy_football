@@ -57,7 +57,7 @@ def draft():
       pick.player_id = player.id 
       roster_spots = RosterSpot.query.filter_by(team_id=pick.team_id)
       open_spots = roster_spots.filter(RosterSpot.roster_position.like('%{}%'.format(player.position))).filter(RosterSpot.player_id == '').all()
-      bench = roster_spots.filter(RosterSpot.roster_position.like('%B%').filter(RosterSpot.player_id == ''))
+      bench = roster_spots.filter(RosterSpot.roster_position.like('%B%')).filter(RosterSpot.player_id == '')
       if len(open_spots) >= 1:
         open_spots[0].player_id = player.id
       else:
@@ -66,12 +66,18 @@ def draft():
         else:
           return "Cannot draft player!"
       db.session.commit()
+    return redirect("/")
       
 
-  return render_template("draft_player.html", teams=teams, draft_player_form=draft_player_form, players=players.all(), pick=pick, bye_counter=bye_counter, error=error)
+  return render_template("draft_player.html", teams=teams, Player=Player, draft_player_form=draft_player_form, players=players, pick=pick, bye_counter=bye_counter, error=error)
 
 # api.add_resource(Teams, '/<string:todo_id>')
 
 
 if __name__ == '__main__':
   app.run(debug=True)
+
+
+
+
+

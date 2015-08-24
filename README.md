@@ -13,8 +13,8 @@ This app aims to do the following:
 Current status 
   1. Functional record updates based on data entry
   2. Top 30 players rendered on home screen
-  3. 1 roster rendered
-  4. Displays current pick
+  3. All rosters rendered with ours in its own section
+  4. Added by week counter to front end.
   5. Updated current pick display to include "On the Clock" + Team name, owner
 
 Next Steps
@@ -35,3 +35,4 @@ Next Steps
     a. convert all R scripting to Python
     b. Use JS to render PNG files produced by matplotlib
   9. Add functionality to enter keepers before the draft and entail all appropriate effects
+  10. Build mechanism to increase bye week counts

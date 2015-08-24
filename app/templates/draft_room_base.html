@@ -8,256 +8,454 @@
   <body>
 
      
-  <h1> Welcome to the draft room. We are going to optimize the fuck out of your draft. </h1>
+    <h1> Welcome to the draft room. We are going to optimize the crap out of your draft. </h1>
   
-  <section>
-    <h2> Draft Status </h2>
-      <div> 
-        <h3> On the Clock</h3>
-        <ul>
-          
-          <li> Team: {{ pick.team_id }} </li> 
-          <li> Owner: {{ pick.team.owner_name }} </li>
-          <li> Round: {{ pick.round_number }} </li> 
-          <li> Pick: {{ pick.id % pick.round_number + 1}} </li>
-        </ul>
+    <section>
+      <h2> Draft Status </h2>
+        <div> 
+          <h3> On the Clock</h3>
+          <ul>
+            
+            <li> Team: {{ pick.team_id }} </li> 
+            <li> Owner: {{ pick.team.owner_name }} </li>
+            <li> Round: {{ pick.round_number }} </li> 
+            <li> Pick: {{ pick.id % pick.round_number + 1}} </li>
+          </ul>
+        </div>
+        <div>
+          <h3> Draft Order </h3>
+
+    </section>
+    {% block content %}
+
+    {% endblock %} 
+
+
+      {% block navbar %}
+        
+      {% endblock navbar %}
+
+
+    <section id="players">
+      <div id="tab-group">
+        <h2 class="tab-header active" id="tab-header-1"> All </h2>
+          <div class="tab-content active" id="tab-content-1"> 
+            <table class="all_players"> 
+              <th>
+                <tr>
+                  <td> Name </td>
+                  <td> Position </td>
+                  <td> Team </td>
+                  <td> Bye </td>
+                  <td> Projected Points </td>
+                </tr>
+              </th>
+              <tbody>
+                {% for player in players.all()[:30] %}
+                <tr class="player_row">
+                  <td> {{ player.name }} </td>
+                  <td> {{ player.position }} </td>
+                  <td> {{ player.team }} </td>
+                  <td> {{ player.bye_week }} </td>
+                  <td> {{ player.points }} </td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+
+
+
+        <h2 class="tab-header" id="tab-header-2"> QBs </h2>
+          <div class="tab-content" id="tab-content-2"> 
+            <table class="positional_table" id="qbs">
+              <th>
+                <tr>
+                  <td> Name </td>
+                  <td> Position </td>
+                  <td> Team </td>
+                  <td> Bye </td>
+                  <td> Projected Points </td>
+                </tr>
+              </th>
+              <tbody>
+                {% for player in players.filter_by(position = "QB").all()[:20] %}
+                <tr class="player_row">
+                  <td> {{ player.name }} </td>
+                  <td> {{ player.position }} </td>
+                  <td> {{ player.team }} </td>
+                  <td> {{ player.bye_week }} </td>
+                  <td> {{ player.points }} </td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+
+        <h2 class="tab-header" id="tab-header-3"> RBs </h2>
+          <div class="tab-content" id="tab-content-3"> 
+            <table class="positional_table" id="rbs"> 
+              <th>
+                <tr>
+                  <td> Name </td>
+                  <td> Position </td>
+                  <td> Team </td>
+                  <td> Bye </td>
+                  <td> Projected Points </td>
+                </tr>
+              </th>
+              <tbody>
+                {% for player in players.filter_by(position = "RB").all()[:20] %}
+                <tr class="players_row">
+                  <td> {{ player.name }} </td>
+                  <td> {{ player.position }} </td>
+                  <td> {{ player.team }} </td>
+                  <td> {{ player.bye_week }} </td>
+                  <td> {{ player.points }} </td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+   
+
+        <h2 class="tab-header" id="tab-header-4"> WRs </h2>
+          <div class="tab-content" id="tab-content-4">    
+            <table class="positional_table" id="wrs"> 
+              <th>
+                <tr>
+                  <td> Name </td>
+                  <td> Position </td>
+                  <td> Team </td>
+                  <td> Bye </td>
+                  <td> Projected Points </td>
+                </tr>
+              </th>
+              <tbody>
+                {% for player in players.filter_by(position = "WR/TE").all()[:20] %}
+                <tr class="players_row">
+                  <td> {{ player.name }} </td>
+                  <td> {{ player.position }} </td>
+                  <td> {{ player.team }} </td>
+                  <td> {{ player.bye_week }} </td>
+                  <td> {{ player.points }} </td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+
+        <h2 class="tab-header" id="tab-header-5"> Flex </h2>
+          <div class="tab-content" id="tab-content-5"> 
+            <table class="positional_table" id="flex"> 
+              <th>
+                <tr>
+                  <td> Name </td>
+                  <td> Position </td>
+                  <td> Team </td>
+                  <td> Bye </td>
+                  <td> Projected Points </td>
+                </tr>
+              </th>
+              <tbody>
+                {% for player in players.filter(Player.position.in_(["RB", "WR/TE"])).all()[:30] %}
+                <tr class="players_row">
+                  <td> {{ player.name }} </td>
+                  <td> {{ player.position }} </td>
+                  <td> {{ player.team }} </td>
+                  <td> {{ player.bye_week }} </td>
+                  <td> {{ player.points }} </td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+        </div>
       </div>
-      <div>
-        <h3> Draft Order </h3>
-
-  </section>
-  {% block content %}
-
-  {% endblock %} 
+    </section>
 
 
-    {% block navbar %}
+
+
+
+
+
+
+
+    <section id="our_team">
+      <div id="dick_frames" class="roster">
+        <table>
+          <caption><h3> Dick Frames </h3></caption>
+          <th>
+            <tr> 
+              <td> Position </td>
+              <td> Player </td>
+            </tr>
+          </th>    
+        {% for pos, name in teams[5] %}
+            <tr>
+              <td> {{ pos }} </td>
+              <td> {{ name }} </td>
+            </tr>
+        {% endfor %}
+        </table>
+      </div>
+      <div class="bye_weeks">
+          <h4> Bye Weeks Count </h4>
+          <ol start="4">
+            {% for week in range(4,12): %}
+            <li> {{ bye_counter[week] }} </li>
+            {% endfor %}
+          </ol>
+      </div>
+
+    </section>
+
+
+    <section id="rosters"><h2>Current Rosters</h2>
+      <div id="roster-tab-group">
+        <h3 class="roster-tab-header active" id="roster-tab-header-1"> Team 1 </h3>
+          <div class="roster-tab-content active" id="roster-tab-content-1"> 
+            <table>
+              <th>
+                <tr> 
+                  <td> Position </td>
+                  <td> Player </td>
+                </tr>
+              </th>    
+            {% for pos, name in teams[1] %}
+                <tr>
+                  <td> {{ pos }} </td>
+                  <td> {{ name }} </td>
+                </tr>
+            {% endfor %}
+            </table>
+          </div>
+
+        <h3 class="roster-tab-header" id="roster-tab-header-2"> Team 2 </h3>
+          <div class="roster-tab-content" id="roster-tab-content-2"> 
+            <table>
+              <th>
+                <tr> 
+                  <td> Position </td>
+                  <td> Player </td>
+                </tr>
+              </th>    
+            {% for pos, name in teams[2] %}
+                <tr>
+                  <td> {{ pos }} </td>
+                  <td> {{ name }} </td>
+                </tr>
+            {% endfor %}
+            </table>
+          </div>
+
+        <h3 class="roster-tab-header" id="roster-tab-header-3"> Team 3 </h3>
+          <div class="roster-tab-content" id="roster-tab-content-3"> 
+            <table>
+              <th>
+                <tr> 
+                  <td> Position </td>
+                  <td> Player </td>
+                </tr>
+              </th>    
+            {% for pos, name in teams[3] %}
+                <tr>
+                  <td> {{ pos }} </td>
+                  <td> {{ name }} </td>
+                </tr>
+            {% endfor %}
+            </table>
+          </div>
+
+
+
+      <h3 class="roster-tab-header" id="roster-tab-header-4"> Team 4 </h3>
+        <div class="roster-tab-content" id="roster-tab-content-4"> 
+          <table>
+            <th>
+              <tr> 
+                <td> Position </td>
+                <td> Player </td>
+              </tr>
+            </th>    
+          {% for pos, name in teams[4] %}
+              <tr>
+                <td> {{ pos }} </td>
+                <td> {{ name }} </td>
+              </tr>
+          {% endfor %}
+          </table>
+        </div>
+
+
+      <h3 class="roster-tab-header" id="roster-tab-header-5"> Team 6 </h3>
+          <div class="roster-tab-content" id="roster-tab-content-5"> 
+            <table>
+              <th>
+                <tr> 
+                  <td> Position </td>
+                  <td> Player </td>
+                </tr>
+              </th>    
+            {% for pos, name in teams[6] %}
+                <tr>
+                  <td> {{ pos }} </td>
+                  <td> {{ name }} </td>
+                </tr>
+            {% endfor %}
+            </table>
+          </div>
+
+      <h3 class="roster-tab-header" id="roster-tab-header-6"> Team 7 </h3>
+          <div class="roster-tab-content" id="roster-tab-content-6"> 
+            <table>
+              <th>
+                <tr> 
+                  <td> Position </td>
+                  <td> Player </td>
+                </tr>
+              </th>    
+            {% for pos, name in teams[7] %}
+                <tr>
+                  <td> {{ pos }} </td>
+                  <td> {{ name }} </td>
+                </tr>
+            {% endfor %}
+            </table>
+          </div>
+
+      <h3 class="roster-tab-header" id="roster-tab-header-7"> Team 8 </h3>
+          <div class="roster-tab-content" id="roster-tab-content-7"> 
+            <table>
+              <th>
+                <tr> 
+                  <td> Position </td>
+                  <td> Player </td>
+                </tr>
+              </th>    
+            {% for pos, name in teams[8] %}
+                <tr>
+                  <td> {{ pos }} </td>
+                  <td> {{ name }} </td>
+                </tr>
+            {% endfor %}
+            </table>
+          </div>
+
+      <h3 class="roster-tab-header" id="roster-tab-header-8"> Team 9 </h3>
+          <div class="roster-tab-content" id="roster-tab-content-8"> 
+            <table>
+              <th>
+                <tr> 
+                  <td> Position </td>
+                  <td> Player </td>
+                </tr>
+              </th>    
+            {% for pos, name in teams[9] %}
+                <tr>
+                  <td> {{ pos }} </td>
+                  <td> {{ name }} </td>
+                </tr>
+            {% endfor %}
+            </table>
+          </div>
+
+      <h3 class="roster-tab-header" id="roster-tab-header-9"> Team 10 </h3>
+          <div class="roster-tab-content" id="roster-tab-content-9"> 
+            <table>
+              <th>
+                <tr> 
+                  <td> Position </td>
+                  <td> Player </td>
+                </tr>
+              </th>    
+            {% for pos, name in teams[10] %}
+                <tr>
+                  <td> {{ pos }} </td>
+                  <td> {{ name }} </td>
+                </tr>
+            {% endfor %}
+            </table>
+          </div>
       
-    {% endblock navbar %}
+    </section>
+
+    <script>
+    "use strict";
+
+    document.addEventListener('DOMContentLoaded', function() {
+      document.getElementById('tab-group').className = 'ready';
+        var tabHeaders = document.getElementsByClassName('tab-header');
+
+        for (var i = 0; i < tabHeaders.length; i++) {
+          tabHeaders[i].addEventListener('click', activateTab);
+        }
+
+        
+        document.getElementById('roster-tab-group').className = 'ready';
+        var rosterTabHeaders = document.getElementsByClassName('roster-tab-header');
+
+        for (var a = 0; a < rosterTabHeaders.length; a++) {
+          rosterTabHeaders[a].addEventListener('click', activateRosterTab);
+        }
+
+      function activateTab(event) {
+        var myID = this.id,
+          contentID = myID.replace('header', 'content');
+    
+          deactivateAllTabs();
+        
+        document.getElementById(contentID).className = 'tab-content active';
+        document.getElementById(myID).className = 'tab-header active';
+      }
+
+      function deactivateAllTabs() {
+        var deactivatedHeaderTabs = document.getElementsByClassName('tab-header active');
+         for (var i = 0; i < deactivatedHeaderTabs.length; i++) {
+         deactivatedHeaderTabs[i].className = 'tab-header';
+        }
+
+        var deactivatedContentTabs = document.getElementsByClassName('tab-content active');
+       
+        for (var i = 0; i < deactivatedContentTabs.length; i++) {
+          deactivatedContentTabs[i].className = 'tab-content';
+        }
+      }
+      
 
 
-  <section>
-    <table class="players"> 
-      <caption><h2> Top 30 Undrafted Players </h2></caption>
-      <th>
-        <tr>
-          <td> Name </td>
-          <td> Position </td>
-          <td> Team </td>
-          <td> Bye </td>
-          <td> Projected Points </td>
-        </tr>
-      </th>
-      <tbody>
-        {% for player in players[:30] %}
-        <tr class="players_row">
-          <td> {{ player.name }} </td>
-          <td> {{ player.position }} </td>
-          <td> {{ player.team }} </td>
-          <td> {{ player.bye_week }} </td>
-          <td> {{ player.points }} </td>
-        </tr>
-        {% endfor %}
-      </tbody>
-    </table>
-  </section>
-
-<section id="dick_flames">
-  <div id="dick_flames" class="roster">
-    <table>
-      <caption><h3> Dick Flames </h3></caption>
-      <th>
-        <tr> 
-          <td> Position </td>
-          <td> Player </td>
-        </tr>
-      </th>    
-    {% for pos, name in teams[5] %}
-        <tr>
-          <td> {{ pos }} </td>
-          <td> {{ name }} </td>
-        </tr>
-    {% endfor %}
-    </table>
-  </div>
-  <div class="bye_weeks">
-      <h4> Bye Weeks Count </h4>
-      <ol start="4">
-        {% for week in range(4,12): %}
-        <li> {{ bye_counter[week] }} </li>
-        {% endfor %}
-      </ol>
-  </div>
-
-</section>
-
-<section id="rosters"><h2>Current Rosters</h2>
-  <div class="roster" id="team1_table"> 
-    <table>
-      <caption> Team 1 </caption>
-      <th>
-        <tr> 
-          <td> Position </td>
-          <td> Player </td>
-        </tr>
-      </th>    
-    {% for pos, name in teams[1] %}
-        <tr>
-          <td> {{ pos }} </td>
-          <td> {{ name }} </td>
-        </tr>
-    {% endfor %}
-    </table>
-  </div>
+      function activateRosterTab(event) {
+        var myID = this.id,
+          contentID = myID.replace('header', 'content');
+    
+          deactivateAllRosterTabs();
+        
+        document.getElementById(contentID).className = 'roster-tab-content active';
+        document.getElementById(myID).className = 'roster-tab-header active';
+      }
 
 
-  <div class="roster" id="team2_table"> 
-    <table>
-      <caption> Team 2 </caption>
-      <th>
-        <tr> 
-          <td> Position </td>
-          <td> Player </td>
-        </tr>
-      </th>    
-    {% for pos, name in teams[2] %}
-        <tr>
-          <td> {{ pos }} </td>
-          <td> {{ name }} </td>
-        </tr>
-    {% endfor %}
-    </table>
-  </div>
 
-  <div class="roster" id="team3_table"> 
-    <table>
-      <caption> Team 3 </caption>
-      <th>
-        <tr> 
-          <td> Position </td>
-          <td> Player </td>
-        </tr>
-      </th>    
-    {% for pos, name in teams[3] %}
-        <tr>
-          <td> {{ pos }} </td>
-          <td> {{ name }} </td>
-        </tr>
-    {% endfor %}
-    </table>
-  </div>
+      function deactivateAllRosterTabs() {
+        var deactivatedHeaderRosterTabs = document.getElementsByClassName('roster-tab-header active');
+        var deactivatedContentRosterTabs = document.getElementsByClassName('roster-tab-content active');
+        for (var i = 0; i < deactivatedHeaderRosterTabs.length; i++) {
+         deactivatedHeaderRosterTabs[i].className = 'roster-tab-header';
+       }
+        for (var i = 0; i < deactivatedContentRosterTabs.length; i++) {
+          deactivatedContentRosterTabs[i].className = 'roster-tab-content';
+        }
+      }
+      
+    });
 
 
-  <div class="roster" id="team4_table"> 
-    <table>
-      <caption> Team 4 </caption>
-      <th>
-        <tr> 
-          <td> Position </td>
-          <td> Player </td>
-        </tr>
-      </th>    
-    {% for pos, name in teams[4] %}
-        <tr>
-          <td> {{ pos }} </td>
-          <td> {{ name }} </td>
-        </tr>
-    {% endfor %}
-    </table>
-  </div>
-
-
-  <div class="roster" id="team6_table"> 
-    <table>
-      <caption> Team 6 </caption>
-      <th>
-        <tr> 
-          <td> Position </td>
-          <td> Player </td>
-        </tr>
-      </th>    
-    {% for pos, name in teams[6] %}
-        <tr>
-          <td> {{ pos }} </td>
-          <td> {{ name }} </td>
-        </tr>
-    {% endfor %}
-    </table>
-  </div>
-
-  <div class="roster" id="team7_table"> 
-    <table>
-      <caption> Team 7 </caption>
-      <th>
-        <tr> 
-          <td> Position </td>
-          <td> Player </td>
-        </tr>
-      </th>    
-    {% for pos, name in teams[7] %}
-        <tr>
-          <td> {{ pos }} </td>
-          <td> {{ name }} </td>
-        </tr>
-    {% endfor %}
-    </table>
-  </div>
-
-  <div class="roster" id="team8_table"> 
-    <table>
-      <caption> Team 8 </caption>
-      <th>
-        <tr> 
-          <td> Position </td>
-          <td> Player </td>
-        </tr>
-      </th>    
-    {% for pos, name in teams[8] %}
-        <tr>
-          <td> {{ pos }} </td>
-          <td> {{ name }} </td>
-        </tr>
-    {% endfor %}
-    </table>
-  </div>
-
-  <div class="roster" id="team9_table"> 
-    <table>
-      <caption> Team 9 </caption>
-      <th>
-        <tr> 
-          <td> Position </td>
-          <td> Player </td>
-        </tr>
-      </th>    
-    {% for pos, name in teams[9] %}
-        <tr>
-          <td> {{ pos }} </td>
-          <td> {{ name }} </td>
-        </tr>
-    {% endfor %}
-    </table>
-  </div>
-
-  <div class="roster" id="team10_table"> 
-    <table>
-      <caption> Team 10 </caption>
-      <th>
-        <tr> 
-          <td> Position </td>
-          <td> Player </td>
-        </tr>
-      </th>    
-    {% for pos, name in teams[10] %}
-        <tr>
-          <td> {{ pos }} </td>
-          <td> {{ name }} </td>
-        </tr>
-    {% endfor %}
-    </table>
-  </div>
-  
-  </section>
+    </script>
 
   </body>
 </html>
+
+
+
+
+
