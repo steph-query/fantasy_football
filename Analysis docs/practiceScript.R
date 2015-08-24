@@ -37,11 +37,26 @@ lossCalc <- function(d.frame, playPos, dRound) {
   print(loss)
 }
 
-##Calculate the probabilities of each of the next ten players being available next round
-next10 <- function(playPos,dRound) {
-  prob <- c()
-  for (i in 0:10) {
-    prob <- append(prob, pbinom(i,10,weightMatrix[dRound,playPos]))
+##Calculate the probabilities of each of the top players being available next round
+nextRound <- function(playPos,dRound) {
+  
+  ##Set number of picks
+  if (dRound %% 2 == 0) {m <- 9; n <- 4}
+  else {m <- 11; n  <- 5}
+  
+  ##Run through weighting system a la lossCalc
+  weights <- c()
+  for (i in 0:m) {
+    prob <- 0
+    for (l in max(0,i-6):min(5,i)) {
+      prob <- prob + dbinom(l,n,weightMatrix[dRound,playPos]) * dbinom(i-l,m-n,weightMatrix[(dRound + 1),playPos])
+    }
+    weights <- append(weights, prob)
   }
-  print(prob)
+  
+  ##Set probabilities to be cumulative to show the probability that player will be around next round
+  for (i in 2:length(weights)) {
+    weights[i] <- weights[i-1] + weights[i]
+  }
+  print(weights)
 }
