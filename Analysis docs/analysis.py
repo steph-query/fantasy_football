@@ -31,7 +31,7 @@ def losscalc(dframe, playpos, dround):
     for i in range(m+1):
         prob = 0
         for l in range(max(0,i-6),min(5,i)+1):
-            prob = prob + binom.pmf(l,n,weightmatrix[dround,playpos]*binom.pmf(i-l,m-n,weightmatrix[dround+1,playpos])))
+            prob = prob + binom.pmf(l,n,thisround)*binom.pmf(i-l,m-n,nextround)
         weights.append(prob)
     
     ##Calculating expected loss
@@ -64,7 +64,7 @@ def nextround(playpos, dround):
     for i in range(m+1):
         prob = 0
         for l in range(max(0,i-6),min(5,i)+1):
-            prob = prob + binom.pmf(l,n,weightmatrix[dround,playpos]*binom.pmf(i-l,m-n,weightmatrix[dround+1,playpos])))
+            prob = prob + binom.pmf(l,n,thisround)*binom.pmf(i-l,m-n,nextround)
         pickprob.append(prob)
     
     ##Setting probabilities to be cumulative, i.e. now it will describe the probability that
