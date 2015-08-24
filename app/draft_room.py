@@ -32,14 +32,14 @@ def draft():
       teams[team_id] = team_roster
 
   bye_counter = {
-                  4: 0,
-                  5: 0,
-                  6: 0,
-                  7: 0,
-                  8: 0,
-                  9: 0,
-                  10: 0,
-                  11: 0
+                  4: [0, []],
+                  5: [0, []],
+                  6: [0, []],
+                  7: [0, []],
+                  8: [0, []],
+                  9: [0, []],
+                  10: [0, []],
+                  11: [0, []]
                 }                  
 
   players = Player.query.filter_by(available=True).order_by(Player.points.desc())

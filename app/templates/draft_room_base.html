@@ -7,6 +7,7 @@
 
   <body>
 
+
      
     <h1> Welcome to the draft room. We are going to optimize the fuck out of your draft. </h1>
   
@@ -422,8 +423,6 @@
         }
       }
       
-
-
       function activateRosterTab(event) {
         var myID = this.id,
           contentID = myID.replace('header', 'content');
@@ -433,8 +432,6 @@
         document.getElementById(contentID).className = 'roster-tab-content active';
         document.getElementById(myID).className = 'roster-tab-header active';
       }
-
-
 
       function deactivateAllRosterTabs() {
         var deactivatedHeaderRosterTabs = document.getElementsByClassName('roster-tab-header active');
@@ -451,6 +448,7 @@
 
 
     </script>
+
 
   </body>
 </html>
