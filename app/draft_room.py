@@ -58,8 +58,7 @@ def draft():
   def calculate_opportunity_cost(positions):
     losses = {}
     for position in positions:
-      prob_sum = 0
-      losses[position] = [losscalc(df, position, pick.round_number), nextround(position, pick.round_number)[position]]
+      losses[position] = [losscalc(df, position, pick.round_number), nextround(position, pick.round_number)]
     return losses
   calcs = calculate_opportunity_cost(positions)
 
