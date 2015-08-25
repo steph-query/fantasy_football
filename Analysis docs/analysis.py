@@ -61,19 +61,27 @@ def nextround(playpos, dround):
     
     ##Setting picks by round
     if dRound % 2 == 0:
-        m = 9
+        m = 8
         n = 4
     else:
-        m = 11
+        m = 10
         n = 5
     
-    ##Calculating weighting system using binomial probability
-    pickprob = []
-    for i in range(m+1):
-        prob = 0
-        for l in range(max(0,i-6),min(5,i)+1):
-            prob = prob + binom.pmf(l,n,thisround)*binom.pmf(i-l,m-n,nextround)
-        pickprob.append(prob)
+    ##Calculating weights based on binomial probability
+    if dRound % 2 == 0:
+    	pickprob = []
+    	for i in range(m+1):
+        	prob = 0
+        	for l in range(max(0,i-4),min(4,i)+1):
+            	prob = prob + binom.pmf(l,n,thisround)*binom.pmf(i-l,m-n,nextround)
+        	pickprob.append(prob)
+    else:
+        pickprob = []
+    	for i in range(m+1):
+        	prob = 0
+        	for l in range(max(0,i-5),min(5,i)+1):
+            	prob = prob + binom.pmf(l,n,thisround)*binom.pmf(i-l,m-n,nextround)
+        	pickprob.append(prob)
     
     ##Setting probabilities to be cumulative, i.e. now it will describe the probability that
     ##that player will still be available by next round
