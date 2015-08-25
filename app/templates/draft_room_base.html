@@ -1,6 +1,7 @@
 
 <html>
   <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <title>{% block title %} Draft Room {% endblock title %}</title>
      <link rel="stylesheet" href="{{ url_for('static', filename='draft_room_base.css') }}" type="text/css" />
   </head>
@@ -59,6 +60,7 @@
                   <td> {{ player.team }} </td>
                   <td> {{ player.bye_week }} </td>
                   <td> {{ player.points }} </td>
+                  <td class: "select-player-button">  </td>
                 </tr>
                 {% endfor %}
               </tbody>
@@ -71,7 +73,7 @@
           <div class="tab-content" id="tab-content-2"> 
             <table class="positional_table" id="qbs">
               <th>
-                <tr>
+                <tr >
                   <td> Name </td>
                   <td> Position </td>
                   <td> Team </td>
@@ -87,6 +89,7 @@
                   <td> {{ player.team }} </td>
                   <td> {{ player.bye_week }} </td>
                   <td> {{ player.points }} </td>
+                  <td class: "select-player-button">  </td>          
                 </tr>
                 {% endfor %}
               </tbody>
@@ -113,6 +116,7 @@
                   <td> {{ player.team }} </td>
                   <td> {{ player.bye_week }} </td>
                   <td> {{ player.points }} </td>
+                  <td class: "select-player-button">  </td>
                 </tr>
                 {% endfor %}
               </tbody>
@@ -140,6 +144,7 @@
                   <td> {{ player.team }} </td>
                   <td> {{ player.bye_week }} </td>
                   <td> {{ player.points }} </td>
+                  <td class: "select-player-button">  </td>                  
                 </tr>
                 {% endfor %}
               </tbody>
@@ -166,6 +171,7 @@
                   <td> {{ player.team }} </td>
                   <td> {{ player.bye_week }} </td>
                   <td> {{ player.points }} </td>
+                  <td class: "select-player-button">  </td>                  
                 </tr>
                 {% endfor %}
               </tbody>
