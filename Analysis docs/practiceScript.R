@@ -26,7 +26,7 @@ lossCalc <- function(d.frame, playPos, dRound) {
   weights <- c()
   for (i in 0:m) {
     prob <- 0
-    for (l in max(0,i-6):min(5,i)) {
+    for (l in max(0,i-5):min(5,i)) {
       prob <- prob + dbinom(l,n,weightMatrix[dRound,playPos]) * dbinom(i-l,m-n,weightMatrix[(dRound + 1),playPos])
     }
     weights <- append(weights, prob)

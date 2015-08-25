@@ -15,10 +15,10 @@ def losscalc(dframe, playpos, dround):
     
     ##Setting picks by round (we can define a variable for this beforehand instead of this method)
     if dRound % 2 == 0:
-        m = 9
+        m = 8
         n = 4
     else:
-        m = 11
+        m = 10
         n = 5
     
     ##Calculating differences
@@ -26,13 +26,21 @@ def losscalc(dframe, playpos, dround):
     for i in range(m+1):
         diff.append(points[0]-points[i])
     
-    ##Calculating weighting system using binomial probability
-    weights = []
-    for i in range(m+1):
-        prob = 0
-        for l in range(max(0,i-6),min(5,i)+1):
-            prob = prob + binom.pmf(l,n,thisround)*binom.pmf(i-l,m-n,nextround)
-        weights.append(prob)
+    ##Calculating weights based on binomial probability
+    if dRound % 2 == 0:
+    	weights = []
+    	for i in range(m+1):
+        	prob = 0
+        	for l in range(max(0,i-4),min(4,i)+1):
+            	prob = prob + binom.pmf(l,n,thisround)*binom.pmf(i-l,m-n,nextround)
+        	weights.append(prob)
+    else:
+        weights = []
+    	for i in range(m+1):
+        	prob = 0
+        	for l in range(max(0,i-5),min(5,i)+1):
+            	prob = prob + binom.pmf(l,n,thisround)*binom.pmf(i-l,m-n,nextround)
+        	weights.append(prob)
     
     ##Calculating expected loss
     loss = []
