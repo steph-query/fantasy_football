@@ -8,11 +8,7 @@
 
   <body>
 
-  <div> 
-    {% for i, calc in calcs.items() %}
-    <p>{{i}}</p> <p> {{calc[0]}}, {{calc[1]}}</p>
-    {% endfor %}
-    </div>
+
      
     <h1> Welcome to the draft room. We are going to optimize the fuck out of your draft. </h1>
   
@@ -42,7 +38,14 @@
       {% endblock navbar %}
 
 
+
     <section id="players">
+      <div> 
+        {% for i, calc in calcs.items() %}
+        <p>{{i}}</p> <p> {{ calc[0] }}</p>
+        {% endfor %}
+      </div>
+
       <div id="tab-group">
         <h2 class="tab-header active" id="tab-header-1"> All </h2>
           <div class="tab-content active" id="tab-content-1"> 
@@ -57,7 +60,7 @@
                 </tr>
               </th>
               <tbody>
-                {% for player in players.all()[:30] %}
+                {% for player in players.all()[:50] %}
                 <tr class="player_row">
                   <td> {{ player.name }} </td>
                   <td> {{ player.position }} </td>
@@ -83,17 +86,18 @@
                   <td> Team </td>
                   <td> Bye </td>
                   <td> Projected Points </td>
+                  <td> Probability </td>
                 </tr>
               </th>
               <tbody>
-                {% for player in players.filter_by(position = "QB").all()[:20] %}
+                {% for player in players.filter_by(position = "QB").all()[:30] %}
                 <tr class="player_row">
                   <td> {{ player.name }} </td>
                   <td> {{ player.position }} </td>
                   <td> {{ player.team }} </td>
                   <td> {{ player.bye_week }} </td>
                   <td> {{ player.points }} </td>
-                  <td class: "select-player-button">  </td>          
+                  <td> {{ calcs[player.position][1][loop.index0] }} </dt> 
                 </tr>
                 {% endfor %}
               </tbody>
@@ -110,17 +114,18 @@
                   <td> Team </td>
                   <td> Bye </td>
                   <td> Projected Points </td>
+                  <td> Probability </td>
                 </tr>
               </th>
               <tbody>
-                {% for player in players.filter_by(position = "RB").all()[:20] %}
+                {% for player in players.filter_by(position = "RB").all()[:30] %}
                 <tr class="players_row">
                   <td> {{ player.name }} </td>
                   <td> {{ player.position }} </td>
                   <td> {{ player.team }} </td>
                   <td> {{ player.bye_week }} </td>
                   <td> {{ player.points }} </td>
-                  <td class: "select-player-button">  </td>
+                  <td> {{ calcs[player.position][1][loop.index0] }} </dt> 
                 </tr>
                 {% endfor %}
               </tbody>
@@ -141,14 +146,14 @@
                 </tr>
               </th>
               <tbody>
-                {% for player in players.filter_by(position = "WR/TE").all()[:20] %}
+                {% for player in players.filter_by(position = "WR/TE").all()[:30] %}
                 <tr class="players_row">
                   <td> {{ player.name }} </td>
                   <td> {{ player.position }} </td>
                   <td> {{ player.team }} </td>
                   <td> {{ player.bye_week }} </td>
                   <td> {{ player.points }} </td>
-                  <td class: "select-player-button">  </td>                  
+                  <td> {{ calcs[player.position][1][loop.index0] }} </dt>           
                 </tr>
                 {% endfor %}
               </tbody>
@@ -165,6 +170,7 @@
                   <td> Team </td>
                   <td> Bye </td>
                   <td> Projected Points </td>
+                  <td> Projected Points </td>                  
                 </tr>
               </th>
               <tbody>

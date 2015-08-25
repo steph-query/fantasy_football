@@ -5,7 +5,7 @@ from config import app, db#, api
 from models import Player, RosterSpot, DraftPick, Team
 from analysis import binom, losscalc, nextround
 import pandas as pd
-
+# from jinja2 import Template
 # from flask_restful import Resource, API, reqparse, abort
 
 @app.route("/", methods=["GET", "POST"])
