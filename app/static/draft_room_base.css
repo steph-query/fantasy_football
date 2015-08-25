@@ -1,0 +1,168 @@
+
+
+body { font-family: sans-serif; background: #eee; }
+
+table {
+  border-collapse: collapse;
+  width: 50%;
+}
+
+a:link {
+  color: #a8c686;
+  text-decoration: none;
+}
+a:visited {
+  text-decoration: none;
+  color: #FFF;
+}
+a:hover {
+  text-decoration: underline;
+  color: #FC6;
+}
+a:active {
+  text-decoration: none;
+  color: #FC6;
+}
+
+#tab-group,#roster-tab-group h2,h3 {
+  text-align: left;
+}
+
+.ready {
+  position: relative;
+  margin-bottom: 2em;
+}
+
+#tab-group.ready,#roster-tab-group.ready .tab-header {
+  font-weight: normal;
+  font-size: 13px;
+  text-transform: uppercase;
+  padding: 4px 6px;
+}
+
+.ready .tab-header.active,.roster-tab-header.active {
+  background: white;
+  border-bottom-color: white;
+}
+
+.ready .tab-header {
+  position: absolute;
+  top: 0;
+  margin: 0;
+  padding: 0.25em 0.5em;
+  left: 0;
+  
+  background: #b9c6aa;
+  border: 1px solid #999;
+  border-radius: 4px 4px 0 0;
+  z-index: 2;
+  
+  cursor: pointer;
+}
+
+.ready .roster-tab-header {
+  position: absolute;
+  top: 0;
+  margin: 0;
+  padding: 0.25em 0.5em;
+  left: 0;
+  
+  background: #b9c6aa;
+  border: 1px solid #999;
+  border-radius: 4px 4px 0 0;
+  z-index: 2;
+  
+  cursor: pointer;
+}
+
+.ready .tab-content {
+  position: relative;
+  top: 0;
+  margin: 0;
+  padding: 0.5em;
+  top: 24px;
+  border: 1px solid #999;
+  z-index: 1;
+  background: white;
+  
+  zoom: 1;
+}
+
+.ready .roster-tab-content {
+  position: relative;
+  top: 0;
+  margin: 0;
+  padding: 0.5em;
+  top: 96px;
+  border: 1px solid #999;
+  z-index: 1;
+  background: white;
+  
+  zoom: 1;
+}
+
+.ready .tab-content:after {
+  content: "\0020";
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden;
+}
+
+
+.ready #tab-header-1,#roster-tab-header-1 {
+  left: 0em;
+}
+
+.ready #tab-header-2,#roster-tab-header-2 {
+  left: 5em;
+}
+
+.ready #tab-header-3,#roster-tab-header-3 {
+  left: 10em;
+}
+
+.ready #tab-header-4,#roster-tab-header-4 {
+  left: 15em;
+}
+
+.ready #tab-header-5 {
+  left: 20em;
+}
+
+.ready #roster-tab-header-5 {
+  left: 20em;
+}
+
+.ready #roster-tab-header-6 {
+  left: 25em;
+}
+
+.ready #roster-tab-header-7 {
+  left: 30em;
+}
+
+.ready #roster-tab-header-8 {
+  left: 35em;
+}
+
+.ready #roster-tab-header-9 {
+  left: 40em;
+}
+
+.ready .tab-content,.roster-tab-content {
+  display: none;
+}
+
+.ready .tab-content p {
+  margin: 0;
+  padding: 0 0 1em;
+}
+
+.ready .tab-content.active,.roster-tab-content.active {
+  display: block;
+}
+
+.ready .tab-header.active,.roster-tab-header.active {
+  color: #00FFFF;
+}
