@@ -8,7 +8,11 @@
 
   <body>
 
-
+  <div> 
+    {% for i, calc in calcs.items() %}
+    <p>{{i}}</p> <p> {{calc[0]}}, {{calc[1]}}</p>
+    {% endfor %}
+    </div>
      
     <h1> Welcome to the draft room. We are going to optimize the fuck out of your draft. </h1>
   
@@ -210,7 +214,7 @@
           <h4> Bye Week Counter </h4>
           <ol start="4">
             {% for week in range(4,12): %}
-            <li> {{ bye_counter[week] }} </li>
+            <li> {{ bye_counter[week][0] }} , <div> {% for i in bye_counter[week][1]: %} i  {% endfor %}</div></li>
             {% endfor %}
           </ol>
       </div>
