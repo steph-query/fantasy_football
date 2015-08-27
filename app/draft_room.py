@@ -23,6 +23,13 @@ def draft():
       return roster_spot.player.name
     except:
       return ''
+
+  def roster_player_bye(roster_spot):
+    try:
+      return return_spot.player.bye_week
+    except:
+      return ''
+
   teams = {}
   for team_id in team_ids:
       team_roster = []

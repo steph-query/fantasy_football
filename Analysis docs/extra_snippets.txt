@@ -1,0 +1,41 @@
+for row in mylist:
+    p = DraftPick.query.filter_by(id=row[0]).first()
+    player = Player.query.filter_by(name=row[1]).first()
+    spot = RosterSpot.query.filter_by(team_id=p.team_id).filter_by(roster_position=player.position).first()
+    try:
+      p.player_id = player.id
+    except:
+      pass
+    try:
+      spot.player_id = player.id
+    except:
+      pass
+    player.available = False
+
+ (79, 'Eli Manning'),
+
+
+[(81, 'Latavius Murray'),
+ (99, 'Lamar Miller'),
+ (23, 'Ben Roethlisberger'),
+ (98, 'DeAndre Hopkins'),
+ (77, 'Carlos Hyde'),
+ (97, 'Mike Evans'),
+ (36, 'Rob Gronkowski'),
+ (116, 'LeGarrette Blount'),
+ (46, 'Justin Forsett'),
+ (86, 'Teddy Bridgewater'),
+ (67, 'Ryan Tannehill'),
+ (13, "Le'Veon Bell"),
+ (33, 'Odell Beckham Jr.'),
+ (49, 'Jeremy Hill'),
+ (52, 'Emmanuel Sanders'),
+ (31, 'C.J. Anderson')]
+
+
+ for row in mylist:
+   ...:     pick = DraftPick.query.filter_by(id=row[0]).first()
+   ...:     player = Player.query.filter_by(row[1]).first()
+   ...:     spot = RosterSpot.query.filter_by(roster_position.like('%' + player.position + '%')
+
+   list = [17, 19, 33, 37, 51, 53, 67, 69, 81, 83, 97, 115, 117, 131, 133, 147, 149]
