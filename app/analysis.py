@@ -1,6 +1,5 @@
 from scipy.stats import binom
 import pandas as pd
-
 ##This function gives the expected loss by waiting a round. dframe should be that data
 ##that is being passed through; it looks like it will be the variable "players" that is 
 ##defined in draft_room.py. playpos should be a character string specifying the position.
@@ -22,14 +21,14 @@ def losscalc(dframe, playpos, dround):
     [6,0.17,0.72,0.11,0],
     [7,0.11,0.74,0.15,0],
     [8,0.18,0.65,0.17,0],
-    [90.1,0,0.88,0.02],
-    [1,0.27,0.02,0.71,0],
-    [1,0.22,0.01,0.75,0.02],
-    [11,0.23,0,0.56,0.21],
-    [11,0.26,0.01,0.52,0.21],
-    [1,0.31,0.03,0.58,0.08],
-    [16,0.15,0.04,0.35,0.46],
-    [1,0,0,0,1]
+    [9,.1,0,0.88,0.02],
+    [10,.27,0.02,0.71,0],
+    [11,0.22,0.01,0.75,0.02],
+    [12,0.23,0,0.56,0.21],
+    [13,0.26,0.01,0.52,0.21],
+    [14,0.31,0.03,0.58,0.08],
+    [15,0.15,0.04,0.35,0.46],
+    [16,0,0,0,1]
     ]
 
 
@@ -38,6 +37,7 @@ def losscalc(dframe, playpos, dround):
     ##Subsetting expected points of all players of the specified position
     points = dframe[dframe.position == playpos].points
     points = points.map(lambda x: x/16)
+    print(len(points))
     #substitute dframe with players (convert to dataframe in draft_room.py) swap filter for .where
 
 
@@ -66,7 +66,7 @@ def losscalc(dframe, playpos, dround):
         weights = []
         for i in range(m+1):
             prob = 0
-            for l in range(max(0,(i-6)),(min(5,i) + 1)):
+            for l in range(max(0,(i-4)),(min(4,i) + 1)):
                 prob = prob + binom.pmf(l,n,thisround) * binom.pmf((i - l),(m - n),nextround)
             weights.append(prob)
     else:
@@ -100,14 +100,14 @@ def nextround(playpos, dround):
     [6,0.17,0.72,0.11,0],
     [7,0.11,0.74,0.15,0],
     [8,0.18,0.65,0.17,0],
-    [90.1,0,0.88,0.02],
-    [1,0.27,0.02,0.71,0],
-    [1,0.22,0.01,0.75,0.02],
-    [11,0.23,0,0.56,0.21],
-    [11,0.26,0.01,0.52,0.21],
-    [1,0.31,0.03,0.58,0.08],
-    [16,0.15,0.04,0.35,0.46],
-    [1,0,0,0,1]
+    [9,0.1,0,0.88,0.02],
+    [10,0.27,0.02,0.71,0],
+    [11,0.22,0.01,0.75,0.02],
+    [12,0.23,0,0.56,0.21],
+    [13,0.26,0.01,0.52,0.21],
+    [14,0.31,0.03,0.58,0.08],
+    [15,0.15,0.04,0.35,0.46],
+    [16,0,0,0,1]
     ]
 
 
@@ -129,7 +129,7 @@ def nextround(playpos, dround):
         pickprob = {}
         for i in range(m+1):
             prob = 0
-            for l in range(max(0,i-6),min(5,i)+1):
+            for l in range(max(0,i-4),min(4,i)+1):
                 prob = prob + binom.pmf(l,n,thisround)*binom.pmf(i-l,m-n,nextround)
             pickprob[i] = prob
     else:

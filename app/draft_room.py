@@ -5,6 +5,7 @@ from config import app, db#, api
 from models import Player, RosterSpot, DraftPick, Team
 from analysis import binom, losscalc, nextround
 import pandas as pd
+import pdb
 # from jinja2 import Template
 # from flask_restful import Resource, API, reqparse, abort
 
@@ -38,16 +39,16 @@ def draft():
         team_roster.append((roster_spot.roster_position, roster_player_name(roster_spot)))
       teams[team_id] = team_roster
 
-  bye_counter = {
-                  4: [0, []],
-                  5: [0, []],
-                  6: [0, []],
-                  7: [0, []],
-                  8: [0, []],
-                  9: [0, []],
-                  10: [0, []],
-                  11: [0, []]
-                }                  
+  # bye_counter = {
+  #                 4: [0, []],
+  #                 5: [0, []],
+  #                 6: [0, []],
+  #                 7: [0, []],
+  #                 8: [0, []],
+  #                 9: [0, []],
+  #                 10: [0, []],
+  #                 11: [0, []]
+  #               }                  
 
 
   players = Player.query.filter_by(available=True).order_by(Player.points.desc())
@@ -60,6 +61,7 @@ def draft():
 
 
   pick = DraftPick.query.filter_by(player_id = '').first()
+  pdb.set_trace()
   positions = ["QB", "RB", "WR/TE"] 
   
   def calculate_opportunity_cost(positions):
@@ -98,7 +100,7 @@ def draft():
     return redirect("/")
       
 
-  return render_template("draft_player.html", calcs=calcs, teams=teams, Player=Player, draft_player_form=draft_player_form, players=players, pick=pick, bye_counter=bye_counter, error=error)
+  return render_template("draft_player.html", calcs=calcs, teams=teams, Player=Player, draft_player_form=draft_player_form, players=players, pick=pick, error=error)
 
 # api.add_resource(Teams, '/<string:todo_id>')
 
