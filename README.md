@@ -19,14 +19,8 @@ Current status
 
 Next Steps
   1. Build mechanism to increase bye week counts
-  2. Pagination of players table
-  3. Pick Tracker
-  4. Show count of players at each bye week on team
-  5. Build queue feature
-    a. list of players 
-  6. Add functionality to enter keepers before the draft and entail all appropriate effects
-  7. Change data entry method to button click
-  8. Import matplotlib for rendering distribution charts
-    a. convert all R scripting to Python
-    b. Use JS to render PNG files produced by matplotlib
+  2. Pick Tracker
+  3. Show count of players at each bye week on team
+  4. Build queue feature
+  5. Add functionality to enter keepers before the draft and entail all appropriate effects
 
